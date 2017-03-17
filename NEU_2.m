@@ -1,5 +1,5 @@
-% Druh· semestr·lnÌ pr·ce z NEU
-% MarkÈta JedliËkov·
+% Druh√° semestr√°ln√≠ pr√°ce z NEU
+% Mark√©ta Jedliƒçkov√°
 
 % Inicializace
 clc;
@@ -10,26 +10,26 @@ P = 3;
 
 for i =1:P
     %nazev = [num2str(i-1),'_times']; % Protypy Times new roman
-    nazev = num2str(i-1);             % FungujÌcÌ prototypy
-    I  = imread(nazev,'jpg');         % nacteni ob·zk˘ a p¯evod do cernobÌle  
+    nazev = num2str(i-1);             % Funguj√≠c√≠ prototypy
+    I  = imread(nazev,'jpg');         % nacteni ob√°zk≈Ø a p≈ôevod do cernob√≠le  
     P1 = im2bw(I);
     
     %figure(i);
     %imshow(P1);
     
-    P1 = mat2vec(P1);                % p¯evod na vektor
+    P1 = mat2vec(P1);                % p≈ôevod na vektor
     P1 = double(P1);
       
-    for n = 1:length(P1)             % pot¯eba aby nebylo jen 1 a 0 ale 1 a -1 
+    for n = 1:length(P1)             % pot≈ôeba aby nebylo jen 1 a 0 ale 1 a -1 
         if P1(n) == 0;
             P1(n) = -1;
         end
     end
     
-    up(:,i) = P1;                    % vytvo¯enÌ prototyp˘
+    up(:,i) = P1;                    % vytvo≈ôen√≠ prototyp≈Ø
     up = double(up);
     
-    R1 = im2bw(I);                   % p¯id·nÌ öumu k p˘vodnÌmu obrazu
+    R1 = im2bw(I);                   % p≈ôid√°n√≠ ≈°umu k p≈Øvodn√≠mu obrazu
     NoisePix = int32(0.3 * double(size) * double(size));
     locations = randi(size*size, [NoisePix, 1]);
     R1(locations) = 0;
@@ -43,12 +43,12 @@ for i =1:P
         end
     end
        
-    ur(:,i) = R1;                    % hotovÈ zaöumÏnnÈ obrazy
+    ur(:,i) = R1;                    % hotov√© za≈°umƒõnn√© obrazy
     ur = double(ur);
 end
 
 
-%% Inicializace
+% Inicializace
 vysl = 0;
 
 % vahova matice
@@ -58,14 +58,14 @@ end
 
 w = vysl - P*eye(n);
 
-%% Algoritmus
+% Algoritmus
 prototyp = 2;
 y(:,1)  = ur(:,prototyp);
 
 k= 1; 
 output = up(:,prototyp);             % prototyp
 output1 = ur(:,prototyp);            % zasumeny
-while (~isequal( output,  output1))  % kontrola zda uû nejde o rovnov·ûn˝ stav
+while (~isequal( output,  output1))  % kontrola zda u≈æ nejde o rovnov√°≈æn√Ω stav
   output = y(:,k);
   for i = 1:size*size
     y(i,k+1) = sign(w(i,:)*y(:,k));   
@@ -75,7 +75,7 @@ while (~isequal( output,  output1))  % kontrola zda uû nejde o rovnov·ûn˝ stav
   k =k+1;
 end
 
-% Zobraz prvnÌ a poslednÌ
+% Zobraz prvn√≠ a posledn√≠
 %for i = 1:k
     obr = vec2mat(y(:,1));
     figure(1);
